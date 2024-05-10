@@ -6,7 +6,7 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE,
+  apiKey: "AIzaSyAQX3H-PUEj1AUyO-X8vmBdArveo3UMNi8",
   authDomain: "intracker-base.firebaseapp.com",
   projectId: "intracker-base",
   storageBucket: "intracker-base.appspot.com",
