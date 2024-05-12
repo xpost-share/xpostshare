@@ -71,7 +71,7 @@ export default function Post() {
               Posted on: <span className="text-gray-700">{post?.pub_date}</span>
             </p>
           </div>
-          {userData && (
+          {userData && userData.uid === post.author_name && (
             <>
               <button
                 className="bg-red-500 text-white hover:bg-red-700 text-sm px-4 py-3 rounded-md mt-4 mr-4"
@@ -79,12 +79,6 @@ export default function Post() {
               >
                 Delete Post
               </button>
-              {/* Button to edit post */}
-              <Link href={`/posts/edit/${post?.slug}`}>
-                <button className="bg-blue-500 text-white hover:bg-blue-700 text-sm px-4 py-3 rounded-md mt-4">
-                  Edit Post
-                </button>
-              </Link>
             </>
           )}
         </header>
