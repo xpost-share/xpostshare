@@ -72,14 +72,12 @@ export default function Post() {
             </p>
           </div>
           {userData && userData.uid === post.author_name && (
-            <>
-              <button
-                className="bg-red-500 text-white hover:bg-red-700 text-sm px-4 py-3 rounded-md mt-4 mr-4"
-                onClick={() => deletePost(post?.post_id!)}
-              >
-                Delete Post
-              </button>
-            </>
+            <button
+              className="bg-red-500 text-white hover:bg-red-700 text-sm px-4 py-3 rounded-md mt-4 mr-4"
+              onClick={() => deletePost(post?.post_id!)}
+            >
+              Delete Post
+            </button>
           )}
         </header>
 
