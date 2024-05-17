@@ -1,5 +1,12 @@
 "use client";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { db, auth } from "../../../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import Comments from "@/app/components/Comments";
@@ -7,8 +14,7 @@ import Nav from "@/app/components/Nav";
 import { extractSlugFromURL } from "@/app/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { doc, deleteDoc } from "firebase/firestore";
-import Link from "next/link"; // Import Link from Next.js
+import Link from "next/link";
 
 export default function Post() {
   const params = usePathname();
@@ -71,7 +77,7 @@ export default function Post() {
               Posted on: <span className="text-gray-700">{post?.pub_date}</span>
             </p>
           </div>
-          {userData && userData.uid === post.author_name && (
+          {userData && post && userData.uid === post.author_id && (
             <button
               className="bg-red-500 text-white hover:bg-red-700 text-sm px-4 py-3 rounded-md mt-4 mr-4"
               onClick={() => deletePost(post?.post_id!)}

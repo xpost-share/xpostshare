@@ -58,7 +58,7 @@ export default function Home() {
     <div>
       <Nav />
       {!userLoggedIn && (
-        <div className="flex justify-between mt-8 mx-4">
+        <div className="flex justify-between mt-8 mx-6">
           <div className="flex-1 mr-8">
             <h1 className="text-6xl font-bold mb-4">Share Success.</h1>
             <p className="text-3xl">
