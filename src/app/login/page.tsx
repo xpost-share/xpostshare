@@ -3,8 +3,10 @@ import { useState } from "react";
 import { handleSignIn } from "../utils";
 import { googleProvider } from "../../../firebase";
 import { GoogleAuthProvider } from "firebase/auth";
+import { useRouter } from "next/navigation"; // Import useRouter
 
-export default function Nav() {
+export default function LoginPage() {
+  const router = useRouter(); // Initialize useRouter
   const [loading, setLoading] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -59,6 +61,11 @@ export default function Nav() {
 
       if (response.ok) {
         console.log(isLogin ? "Login successful" : "Registration successful");
+        if (!isLogin) {
+          await sendVerificationEmail();
+        }
+        // Redirect to index page after successful login or registration
+        router.push("/");
       } else {
         setError(data.message || "An error occurred");
       }
@@ -66,6 +73,29 @@ export default function Nav() {
       setError("An error occurred. Please try again.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const sendVerificationEmail = async () => {
+    try {
+      const response = await fetch(
+        "https://xpost-share-backend-app-4jzh5demla-as.a.run.app/api/v1/send-verification-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: formData.email }),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Verification email sent successfully");
+      } else {
+        console.error("Failed to send verification email");
+      }
+    } catch (error) {
+      console.error("Error sending verification email:", error);
     }
   };
 
