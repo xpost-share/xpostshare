@@ -9,7 +9,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>();
-  const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
   const [displayName, setDisplayName] = useState<string>("");
   const [titles, setTitles] = useState<string[]>([
     "XpostShare",
@@ -40,7 +40,7 @@ export default function Home() {
   }, []);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUserLoggedIn(user !== null);
+      setIsLogin(user !== null);
     });
     return () => unsubscribe();
   }, []);
@@ -57,7 +57,7 @@ export default function Home() {
   return (
     <div>
       <Nav />
-      {!userLoggedIn && (
+      {!isLogin && (
         <div className="flex justify-between mt-8 mx-6">
           <div className="flex-1 mr-8">
             <h1 className="text-6xl font-bold mb-4">Share Success.</h1>
@@ -89,7 +89,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      {userLoggedIn && (
+      {isLogin && (
         <main className="p-8 w-full flex lg:flex-row flex-col items-center gap-5 flex-wrap justify-center">
           {posts?.map((post) => (
             <Link
