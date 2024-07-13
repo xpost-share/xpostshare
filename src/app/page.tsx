@@ -8,7 +8,7 @@ import Nav from "./components/Nav";
 import { onAuthStateChanged } from "firebase/auth";
 
 export default function Home() {
-  const [posts, setPosts] = useState<Post[]>();
+  const [posts, setPosts] = useState<Post[]>([]);
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [displayName, setDisplayName] = useState<string>("");
   const [titles, setTitles] = useState<string[]>([
@@ -17,6 +17,7 @@ export default function Home() {
     "Xperience",
   ]);
   const [currentTitleIndex, setCurrentTitleIndex] = useState<number>(0);
+
   const shortenText = (text: string): string => {
     return text.length <= 55 ? text : text.slice(0, 55) + "...";
   };
@@ -24,23 +25,31 @@ export default function Home() {
   useEffect(() => {
     fetchAllPosts();
   }, []);
+
   useEffect(() => {
     const userJson = localStorage.getItem("user");
     if (userJson) {
-      const user = JSON.parse(userJson);
-      setDisplayName(user.displayName);
+      try {
+        const user = JSON.parse(userJson);
+        setDisplayName(user.displayName);
+      } catch (error) {
+        console.error("Error parsing user data from localStorage:", error);
+      }
     }
 
-    // Change title every 3 seconds
     const interval = setInterval(() => {
       setCurrentTitleIndex((prevIndex) => (prevIndex + 1) % titles.length);
     }, 3000);
 
     return () => clearInterval(interval);
   }, []);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsLogin(user !== null);
+      if (user) {
+        fetchAllPosts(); // Fetch posts after user login
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -62,7 +71,7 @@ export default function Home() {
           <div className="flex-1 mr-8">
             <h1 className="text-6xl font-bold mb-4">Share Success.</h1>
             <p className="text-3xl">
-              Join our community and inspire others by sharing your walktrough
+              Join our community and inspire others by sharing your walkthrough
             </p>
             <Link href="/login">
               <button className="mt-8 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
@@ -91,7 +100,7 @@ export default function Home() {
       )}
       {isLogin && (
         <main className="p-8 w-full flex lg:flex-row flex-col items-center gap-5 flex-wrap justify-center">
-          {posts?.map((post) => (
+          {posts.map((post) => (
             <Link
               href={`/posts/${post.slug}`}
               className="cursor-pointer lg:w-1/3 rounded-lg w-full border-2 h-[400px] bg-white relative overflow-hidden"

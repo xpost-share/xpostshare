@@ -64,7 +64,8 @@ export default function LoginPage() {
         if (!isLogin) {
           await sendVerificationEmail();
         }
-        // Redirect to index page after successful login or registration
+        // Save user to local storage after successful login
+        localStorage.setItem("user", JSON.stringify(data.user));
         router.push("/");
       } else {
         setError(data.message || "An error occurred");

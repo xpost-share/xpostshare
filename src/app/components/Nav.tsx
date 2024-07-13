@@ -10,11 +10,14 @@ export default function Nav() {
   useEffect(() => {
     const userJson = localStorage.getItem("user");
     if (userJson) {
-      const user = JSON.parse(userJson);
-      setDisplayName(user.displayName);
+      try {
+        const user = JSON.parse(userJson);
+        setDisplayName(user.displayName);
+      } catch (error) {
+        console.error("Error parsing user data from localStorage:", error);
+      }
     }
   }, []);
-
   return (
     <div>
       <nav className="w-full py-4 border-b-2 px-8 text-center flex items-center justify-between sticky top-0 bg-[#f5f7ff]">
