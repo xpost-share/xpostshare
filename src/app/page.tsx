@@ -58,15 +58,6 @@ export default function Home() {
     return () => unsubscribe();
   }, []);
 
-  const fetchAllPosts = async () => {
-    const querySnapshot = await getDocs(collection(db, "posts"));
-    const posts: any = [];
-    querySnapshot.forEach((doc) => {
-      posts.push({ ...doc.data(), post_id: doc.id });
-    });
-    setPosts(posts);
-  };
-
   return (
     <div>
       <Nav />
