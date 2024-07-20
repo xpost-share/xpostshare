@@ -1,6 +1,4 @@
-// src / contexts / AuthContext.tsx
 "use client";
-// src/contexts/AuthContext.tsx
 import React, { createContext, useState, ReactNode } from "react";
 
 interface AuthContextProps {
@@ -17,7 +15,10 @@ export const AuthContext = createContext<AuthContextProps | undefined>(
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const loginWithAPI = async (username: string, password: string) => {
+  const loginWithAPI = async (
+    username: string,
+    password: string
+  ): Promise<{ success: boolean; message?: string }> => {
     try {
       const response = await fetch(
         "https://xpost-share-backend-app-4jzh5demla-as.a.run.app/api/v1/login",
@@ -41,7 +42,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       }
     } catch (error) {
       console.error("Login error:", error);
-      return { success: false, message: error.message };
+      return {
+        success: false,
+        message:
+          error instanceof Error ? error.message : "An unknown error occurred",
+      };
     }
   };
 

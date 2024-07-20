@@ -98,3 +98,88 @@ export const isAuthenticated = (): boolean => {
 };
 
 // Add other utility functions...
+export const getCurrentDate = (): string => {
+  const currentDate = new Date();
+  const day = currentDate.getDate();
+  const monthIndex = currentDate.getMonth();
+  const year = currentDate.getFullYear();
+
+  const suffixes = ["th", "st", "nd", "rd"];
+  const suffix = suffixes[(day - 1) % 10 > 3 ? 0 : (day - 1) % 10];
+
+  const months = [
+    "Jan.",
+    "Feb.",
+    "Mar.",
+    "Apr.",
+    "May",
+    "Jun.",
+    "Jul.",
+    "Aug.",
+    "Sept.",
+    "Oct.",
+    "Nov.",
+    "Dec.",
+  ];
+  const month = months[monthIndex];
+
+  return `${day}${suffix} ${month} ${year}`;
+};
+
+export const slugifySentences = (sentence: string): string => {
+  // Remove special characters and replace spaces with hyphens
+  const slug = sentence
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-");
+
+  // Generate 5 random letters
+  const randomLetters = Array.from({ length: 5 }, () =>
+    String.fromCharCode(97 + Math.floor(Math.random() * 26))
+  ).join("");
+
+  return `${slug}-${randomLetters}`;
+};
+export const handleApiRegister = async (formData: {
+  username: string;
+  password: string;
+  email: string;
+  first_name: string;
+}) => {
+  try {
+    const response = await fetch(
+      "https://xpost-share-backend-app-4jzh5demla-as.a.run.app/api/v1/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Registration successful
+      return { success: true, message: "Registration successful" };
+    } else {
+      // Registration failed
+      return { success: false, message: data.message || "Registration failed" };
+    }
+  } catch (error) {
+    console.error("Registration error:", error);
+    return {
+      success: false,
+      message:
+        error instanceof Error
+          ? error.message
+          : "An unknown error occurred during registration",
+    };
+  }
+};
+export const extractSlugFromURL = (url: string): string => {
+  const parts = url.split("/");
+  const slug = parts.slice(2).join("/");
+  return slug;
+};
