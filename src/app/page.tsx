@@ -21,7 +21,6 @@ export default function Home() {
   const shortenText = (text: string): string => {
     return text.length <= 55 ? text : text.slice(0, 55) + "...";
   };
-
   const fetchAllPosts = async () => {
     const querySnapshot = await getDocs(collection(db, "posts"));
     const posts: any = [];
