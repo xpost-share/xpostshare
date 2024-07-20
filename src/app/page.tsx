@@ -22,9 +22,15 @@ export default function Home() {
     return text.length <= 55 ? text : text.slice(0, 55) + "...";
   };
 
-  useEffect(() => {
-    fetchAllPosts();
-  }, []);
+  const fetchAllPosts = async () => {
+    const querySnapshot = await getDocs(collection(db, "posts"));
+    const posts: any = [];
+    querySnapshot.forEach((doc) => {
+      posts.push({ ...doc.data(), post_id: doc.id });
+    });
+    setPosts(posts);
+  };
+
 
   useEffect(() => {
     const userJson = localStorage.getItem("user");
