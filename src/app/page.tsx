@@ -8,7 +8,7 @@ import Nav from "./components/Nav";
 import { onAuthStateChanged } from "firebase/auth";
 
 export default function Home() {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<any[]>([]);
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [displayName, setDisplayName] = useState<string>("");
   const [titles, setTitles] = useState<string[]>([
