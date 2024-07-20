@@ -8,7 +8,7 @@ import Nav from "./components/Nav";
 import { onAuthStateChanged } from "firebase/auth";
 
 export default function Home() {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<any[]>([]);
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [displayName, setDisplayName] = useState<string>("");
   const [titles, setTitles] = useState<string[]>([
@@ -22,38 +22,6 @@ export default function Home() {
     return text.length <= 55 ? text : text.slice(0, 55) + "...";
   };
 
-  useEffect(() => {
-    fetchAllPosts();
-  }, []);
-
-  useEffect(() => {
-    const userJson = localStorage.getItem("user");
-    if (userJson) {
-      try {
-        const user = JSON.parse(userJson);
-        setDisplayName(user.displayName);
-      } catch (error) {
-        console.error("Error parsing user data from localStorage:", error);
-      }
-    }
-
-    const interval = setInterval(() => {
-      setCurrentTitleIndex((prevIndex) => (prevIndex + 1) % titles.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setIsLogin(user !== null);
-      if (user) {
-        fetchAllPosts(); // Fetch posts after user login
-      }
-    });
-    return () => unsubscribe();
-  }, []);
-
   const fetchAllPosts = async () => {
     const querySnapshot = await getDocs(collection(db, "posts"));
     const posts: any = [];
@@ -62,6 +30,48 @@ export default function Home() {
     });
     setPosts(posts);
   };
+
+  useEffect(() => {
+    const checkAuth = () => {
+      const userJson = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
+      if (userJson || token) {
+        setIsLogin(true);
+        if (userJson) {
+          try {
+            const user = JSON.parse(userJson);
+            setDisplayName(user.displayName);
+          } catch (error) {
+            console.error("Error parsing user data from localStorage:", error);
+          }
+        }
+        fetchAllPosts();
+      } else {
+        setIsLogin(false);
+      }
+    };
+
+    checkAuth();
+
+    const interval = setInterval(() => {
+      setCurrentTitleIndex((prevIndex) => (prevIndex + 1) % titles.length);
+    }, 3000);
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLogin(true);
+        setDisplayName(user.displayName || "");
+        fetchAllPosts();
+      } else {
+        checkAuth(); // Check for API auth if Firebase auth is not present
+      }
+    });
+
+    return () => {
+      clearInterval(interval);
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <div>

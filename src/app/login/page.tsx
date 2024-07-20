@@ -3,10 +3,10 @@ import { useState } from "react";
 import { handleSignIn } from "../utils";
 import { googleProvider } from "../../../firebase";
 import { GoogleAuthProvider } from "firebase/auth";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -23,9 +23,24 @@ export default function LoginPage() {
     setAgreeToNotifications(e.target.checked);
   };
 
-  const handleGoogleSignIn = () => {
+  const handleGoogleSignIn = async () => {
     setLoading(true);
-    handleSignIn(googleProvider, GoogleAuthProvider);
+    try {
+      const result = await handleSignIn(googleProvider, GoogleAuthProvider);
+      if (result.user) {
+        // Google Sign-In successful
+        const { displayName, uid, email } = result.user;
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ displayName, u_id: uid, email })
+        );
+        router.push("/");
+      }
+    } catch (error) {
+      setError("An error occurred during Google Sign-In. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,6 +81,7 @@ export default function LoginPage() {
         }
         // Save user to local storage after successful login
         localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", data.token); // Store the token
         router.push("/");
       } else {
         setError(data.message || "An error occurred");
