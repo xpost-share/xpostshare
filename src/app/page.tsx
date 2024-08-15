@@ -4,8 +4,10 @@ import Link from "next/link";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db, auth } from "../../firebase";
-import Nav from "./components/Nav";
 import { onAuthStateChanged } from "firebase/auth";
+
+import Nav from "./ui/components/Nav";
+import CardLog from "./ui/components/Home/cardLog";
 
 export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
@@ -73,64 +75,70 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <main>
       <Nav />
-      {!isLogin && (
-        <div className="flex justify-between mt-8 mx-6">
-          <div className="flex-1 mr-8">
-            <h1 className="text-6xl font-bold mb-4">Share Success.</h1>
-            <p className="text-3xl">
-              Join our community and inspire others by sharing your walkthrough
-            </p>
-            <Link href="/login">
-              <button className="mt-8 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                Get Started
-              </button>
-            </Link>
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            {titles.map((title, index) => (
-              <span
-                key={index}
-                style={{
-                  transition: "opacity 0.5s",
-                  opacity: index === currentTitleIndex ? 1 : 0,
-                  fontSize: "3rem",
-                  fontWeight: "bold",
-                  color: "#2563EB",
-                }}
-                className="mx-2"
-              >
-                {title}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-      {isLogin && (
-        <main className="p-8 w-full flex lg:flex-row flex-col items-center gap-5 flex-wrap justify-center">
-          {posts.map((post) => (
-            <Link
-              href={`/posts/${post.slug}`}
-              className="cursor-pointer lg:w-1/3 rounded-lg w-full border-2 h-[400px] bg-white relative overflow-hidden"
-              key={post.post_id}
-            >
-              <Image
-                src={post.image_url}
-                alt="Image"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-t-lg"
-              />
-              <section className="absolute bottom-0 left-0 w-full bg-white bg-opacity-80 p-4">
-                <p className="font-semibold text-xl text-blue-500">
-                  {shortenText(post.title)}
+      {!isLogin ? (
+        <>
+          <div className="lg:bg-[url('/Home/bgImg.svg')] bg-[url('/Home/bgImgMobile.svg')] bg-cover bg-center min-h-screen outline outline-3 outline-yellow-500">
+            <div className="md:px-28 px-3 flex flex-col-reverse md:flex-row items-center min-h-screen justify-between gap-x-60">
+              <div className="grid-cols-1 gap-10 grid mb-32 md:mb-0">
+                <div>
+                  <h1 className="title">Learn</h1>
+                  <h1 className="title translate-x-7">Write</h1>
+                  <h1 className="title translate-x-16">Share</h1>
+                </div>
+                <p className="max-w-[500px] translate-x-7 font-medium text-2xl">
+                  Share your wonderful stories and read amazing adventures of
+                  others.
                 </p>
-              </section>
-            </Link>
-          ))}
-        </main>
+                <Link href="/login">
+                  <button className="btnstart md:translate-x-0 translate-x-7 hover:scale-110 transition-transform ease-in-out duration-5000 text-white py-2 px-3.5 text-3xl hover:bg-[#9a4824] bg-[#3B1708] transform">
+                    Start Sharing
+                  </button>
+                </Link>
+              </div>
+              <div className="">
+                <Image
+                  src="/Home/sun.svg"
+                  alt="A sun"
+                  width={150}
+                  height={200}
+                  className="absolute right-2 md:right-[100px] bottom-0 md:top-20 lg:right-[500px]"
+                />
+                <img
+                  src="/Home/Dude.png"
+                  alt="A person reading a book"
+                  width={500}
+                  height={500}
+                  className="hidden lg:block"
+                />
+                <Image
+                  src="/Home/cubc.svg"
+                  alt="cub"
+                  width={150}
+                  height={150}
+                  className="hidden lg:block absolute bottom-0 right-0"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="bg-[#F6F1E9] min-h-screen"></div>
+        </>
+      ) : (
+        <>
+          <div className="bg-[#F6F1E9] min-h-screen">
+            <div className="gap-12 px-5 md:px-28 pt-28 pb-12 md:grid-cols-1 grid-cols-1 grid lg:grid-cols-2 grid-flow-row">
+              {posts.map((post) => (
+                <div key={post.post_id}>
+                  
+                  <CardLog post={post} />
+
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
       )}
-    </div>
+    </main>
   );
 }

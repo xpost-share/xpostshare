@@ -1,6 +1,7 @@
 // src/app/layout.tsx
 import { AuthProvider } from "./contexts/AuthContext";
 import "./globals.css";
+import {nuale, poppins} from './ui/Font'
 
 export default function RootLayout({
   children,
@@ -9,7 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={nuale.className}>
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
