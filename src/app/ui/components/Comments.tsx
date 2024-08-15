@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { getCurrentDate } from "../utils";
+import { getCurrentDate } from "../../utils";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
-import { db } from "../../../firebase";
+import { db } from "../../../../firebase";
 
 interface User {
   displayName: string;
