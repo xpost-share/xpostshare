@@ -5,6 +5,12 @@ import { googleProvider } from "../../../firebase";
 import { GoogleAuthProvider } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
+import { Description, Field, Input, Label } from '@headlessui/react'
+import Image from "next/image";
+import Link from "next/link";
+
+import { FcGoogle } from "react-icons/fc";
+
 export default function LoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
@@ -117,107 +123,46 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center">
-      <h2 className="font-bold text-2xl mb-6">
-        {isLogin ? "Login to" : "Join"} XPostShare
-      </h2>
+    <div className="lg:bg-[url('/login/bgLogin.svg')] bg-[url('/login/bgLoginMobile.svg')] bg-cover bg-center min-h-screen">
+    <Link href='/' className="text-2xl cursor-pointer hidden md:block md:-rotate-90 top-24 lg:block lg:right-28 lg:top-4 lg:rotate-0 absolute text-orange-400 font-bold p-1 rounded-md outline outline-orange-400 outline-3">XPostShare</Link>
+    <div className="flex items-center md:flex-1 w-full min-h-screen lg:px-28 justify-evenly gap-14">
 
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-
-      <form onSubmit={handleSubmit} className="w-1/3 mb-6">
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleInputChange}
-          className="w-full mb-2 px-3 py-2 border rounded"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleInputChange}
-          className="w-full mb-2 px-3 py-2 border rounded"
-          required
-        />
-        {!isLogin && (
-          <>
-            <input
-              type="password"
-              name="confirmation_password"
-              placeholder="Confirm Password"
-              value={formData.confirmation_password}
-              onChange={handleInputChange}
-              className="w-full mb-2 px-3 py-2 border rounded"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="w-full mb-2 px-3 py-2 border rounded"
-              required
-            />
-            <input
-              type="text"
-              name="first_name"
-              placeholder="First Name"
-              value={formData.first_name}
-              onChange={handleInputChange}
-              className="w-full mb-2 px-3 py-2 border rounded"
-              required
-            />
-          </>
-        )}
-        {!isLogin && (
-          <div className="mb-4">
-            <label className="flex items-center">
-              <input
-                type="checkbox"
-                checked={agreeToNotifications}
-                onChange={handleCheckboxChange}
-                required
-                className="mr-2"
-              />
-              <span className="text-sm text-gray-500">
-                *I agree to receive notifications for development-related
-                events.
-              </span>
-            </label>
+      <div className="bg-white/90 p-7 rounded-md shadow-md w-[400px]">
+        <p className="text-3xl mb-4 font-medium">Sign in</p>
+        <p className="w-[280px]">If you don’t have an account register You can <Link href='/register' className="text-orange-400 font-bold cursor-pointer hover:text-amber-300 transition duration-700 ease-out">Register here!</Link></p>
+        <Field className='grid grid-cols-1 mt-8 gap-5'>
+          <div>
+            <Label>Username</Label>
+            <Input type="text" placeholder="Enter your username" className="w-full focus:outline-orange-500 duration-400 transition-all ease-in placeholder-orange-600/50 font-light mt-1 text-orange-900 px-7 py-3 rounded-md outline-1 outline bg-orange-400/5 outline-orange-400/80 text-sm" />
           </div>
-        )}
-        <button
-          type="submit"
-          className="w-full bg-lime-500 text-white px-4 py-2 rounded hover:bg-lime-600"
-          disabled={loading}
-        >
-          {loading ? "Processing..." : isLogin ? "Login" : "Register"}
+          <div>
+            <Label>Password</Label>
+            <Input type="password" placeholder="Enter your username" className="w-full focus:outline-orange-500 text-sm duration-400 transition-all ease-in placeholder-orange-600/50 font-light mt-1 text-orange-900 px-7 py-3 rounded-md outline-1 outline bg-orange-400/5 outline-orange-400/80" />
+          </div>
+        </Field>
+        <div className="flex justify-end">
+          <span className="cursor-pointer hover:text-gray-400 text-sm my-5 inline-block text-gray-600 font-light transition duration-200 ease-in right-0">Forgot Password?</span>
+
+        </div>
+        <button className="w-full rounded-md bg-orange-400 py-2.5 text-white hover:bg-orange-300 transition ease-in duration-150">
+          Login
         </button>
-      </form>
+        <span className="flex text-gray-500 justify-center my-5 cursor-default"> 
+          OR
+        </span>
+        <div className="flex justify-center">
+          <button onClick={handleGoogleSignIn} disabled={loading} className="flex outline hover:shadow-lg duration-400 transition ease-in outline-orange-300/50 gap-4 items-center bg-[#FFF4E3] px-10 py-3 rounded-xl">
+            <FcGoogle size={30} />
+            <span className="text-orange-700/80">Sign in with Google</span>
+          </button>
+        </div>
+      </div>
 
-      <button
-        onClick={() => setIsLogin(!isLogin)}
-        className="mb-4 text-blue-500 hover:underline"
-      >
-        {isLogin
-          ? "Need an account? Register"
-          : "Already have an account? Login"}
-      </button>
-
-      <div className="w-1/3 text-center mb-4">- OR -</div>
-
-      <button
-        className="w-1/3 border-2 border-gray-600 rounded-md hover:bg-black hover:text-white px-8 py-4"
-        disabled={loading}
-        onClick={handleGoogleSignIn}
-      >
-        {loading ? "Signing in..." : "Sign in with Google"}
-      </button>
+      <div className="lg:flex flex-col hidden">
+        <p className="text-3xl hidden lg:block text-[#4F210E] max-w-[450px] mb-10 text-end">Get right back where you left off,  create some  more amazing work!</p>
+        <Image src="/login/guyReading.svg" alt="guy" height={300} width={300} className="hidden md:hidden lg:block"/>
+      </div>
     </div>
+</div>
   );
 }
