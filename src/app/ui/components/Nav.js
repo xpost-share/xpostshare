@@ -5,7 +5,14 @@ import { handleSignOut } from "../../utils";
 import { usePathname, useRouter } from "next/navigation";
 
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { Button, Avatar } from "@material-tailwind/react";
+import {
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  Avatar,
+} from "@material-tailwind/react";
 import Image from "next/image";
 
 import { BsFillPersonFill } from "react-icons/bs";
@@ -106,9 +113,41 @@ export default function Nav() {
                     </button>
                   </Link>
                 ) : (
-                  <button className="bg-blue-400 text-white text-lg py-1 px-3 rounded-xl font-medium upBtn transition-shadow duration-500 ease-out">
-                    Upload
-                  </button>
+                  <div>
+                    <Button onClick={handleOpen} variant="gradient">
+                      Open Dialog
+                    </Button>
+                    <Dialog open={open} handler={handleOpen}>
+                      <DialogHeader>Its a simple dialog.</DialogHeader>
+                      <DialogBody>
+                        The key to more success is to have a lot of pillows. Put
+                        it this way, it took me twenty five years to get these
+                        plants, twenty five years of blood sweat and tears, and
+                        I&apos;m never giving up, I&apos;m just getting started.
+                        I&apos;m up to something. Fan luv.
+                      </DialogBody>
+                      <DialogFooter>
+                        <Button
+                          variant="text"
+                          color="red"
+                          onClick={handleOpen}
+                          className="mr-1"
+                        >
+                          <span>Cancel</span>
+                        </Button>
+                        <Button
+                          variant="gradient"
+                          color="green"
+                          onClick={handleOpen}
+                        >
+                          <span>Confirm</span>
+                        </Button>
+                      </DialogFooter>
+                    </Dialog>
+                    <button className="bg-blue-400 text-white text-lg py-1 px-3 rounded-xl font-medium upBtn transition-shadow duration-500 ease-out">
+                      Upload
+                    </button>
+                  </div>
                 )}
               </div>
               <Menu>
