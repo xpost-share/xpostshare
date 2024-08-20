@@ -38,7 +38,7 @@ export default function RegisterPage() {
     <div className="lg:bg-[url('/register/bgReg.svg')] bg-[url('/register/bgRegMobile.svg')] bg-cover bg-center min-h-screen">
       <Link
         href={"/"}
-        className="text-2xl cursor-pointer hidden md:block md:-rotate-90 top-24 lg:block lg:left-28 lg:top-4 lg:rotate-0 absolute text-orange-400 font-bold p-1 rounded-md outline outline-orange-400 outline-3"
+        className="text-2xl cursor-pointer hidden md:block md:-rotate-90 top-24 lg:block lg:left-28 lg:top-4 lg:rotate-0 absolute text-orange-400 font-bold p-1 rounded-md outline outline-orange-400 outline-4"
       >
         XPostShare
       </Link>
@@ -50,7 +50,7 @@ export default function RegisterPage() {
           width={400}
           className="hidden md:hidden lg:block"
         />
-        <div className="bg-white/90 p-7 rounded-md shadow-md w-[400px]">
+        <div className="bg-white/90 p-7 rounded-md shadow-md max-w-[400px] mx-[5%]">
           <p className="text-3xl mb-4 font-medium">Sign up</p>
           <p className="w-[280px]">
             If you already have an account register You can{" "}
