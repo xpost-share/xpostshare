@@ -61,7 +61,7 @@ export default function Nav() {
     }
   };
 
-  const isOnCreatePostPage = usePathname() === '/posts/create';
+  const isOnCreatePostPage = usePathname() === "/posts/create";
 
   return (
     <nav
@@ -71,7 +71,7 @@ export default function Nav() {
           : "bg-[rgba(255,157,0,0.4)]"
       }  z-50 fixed w-full top-0 backdrop-blur-sm`}
     >
-      <div className="py-[14px] px-3 md:px-[110px] flex justify-between">
+      <div className="py-[14px] mx-[4%] md:mx-[13%] lg:mx-[7.5%] flex justify-between">
         <Link href={"/"} className="flex items-center gap-0 cursor-pointer">
           <Image src="/X.png" alt="X logo" width={30} height={50} />
           <span className={`text-3xl font-bold -m-1`}>Postshare</span>
@@ -105,8 +105,7 @@ export default function Nav() {
                       New Post
                     </button>
                   </Link>
-                ):(
-
+                ) : (
                   <button className="bg-blue-400 text-white text-lg py-1 px-3 rounded-xl font-medium upBtn transition-shadow duration-500 ease-out">
                     Upload
                   </button>
