@@ -33,6 +33,9 @@ export default function Home() {
   };
 
   useEffect(() => {
+
+    console.log(localStorage);
+
     const checkAuth = () => {
       const userJson = localStorage.getItem("user");
       const token = localStorage.getItem("token");
@@ -80,24 +83,27 @@ export default function Home() {
       {!isLogin ? (
         <>
           <div className="lg:bg-[url('/Home/bgImg.svg')] bg-[url('/Home/bgImgMobile.svg')] bg-cover bg-center min-h-screen outline outline-3 outline-yellow-500">
-            <div className="md:px-28 px-3 flex flex-col-reverse md:flex-row items-center min-h-screen justify-between gap-x-60">
-              <div className="grid-cols-1 gap-10 grid mb-32 md:mb-0">
-                <div>
+            <div className="items-center min-h-screen justify-between gap-x-9 flex mx-[3%] md:mx-[13%] lg:mx-[7.5%]">
+              <div className="grid-cols-1 gap-10 grid md:mb-0 w-full">
+                <div className="w-full flex flex-col items-start">
                   <h1 className="title">Learn</h1>
                   <h1 className="title translate-x-7">Write</h1>
                   <h1 className="title translate-x-16">Share</h1>
                 </div>
-                <p className="max-w-[500px] translate-x-7 font-medium text-2xl">
-                  Share your wonderful stories and read amazing adventures of
-                  others.
-                </p>
+                <div className="flex ">
+                  <p className="translate-x-5 max-w-[250px] md:max-w-[400px] font-semibold   text-base md:text-xl leading-4 lg:text-xl">
+                    Share your wonderful stories and read amazing adventures of
+                    others.
+                  </p>
+                </div>
+
                 <Link href="/login">
-                  <button className="btnstart md:translate-x-0 translate-x-7 hover:scale-110 transition-transform ease-in-out duration-5000 text-white py-2 px-3.5 text-3xl hover:bg-[#9a4824] bg-[#3B1708] transform">
+                  <button className="btnstart hover:scale-110 transition-transform ease-in-out duration-5000 text-white py-2 px-3.5 text-xl md:text-2xl hover:bg-[#9a4824] bg-[#3B1708] transform">
                     Start Sharing
                   </button>
                 </Link>
               </div>
-              <div className="">
+              <div className="hidden md:block">
                 <Image
                   src="/Home/sun.svg"
                   alt="A sun"
@@ -108,8 +114,8 @@ export default function Home() {
                 <img
                   src="/Home/Dude.png"
                   alt="A person reading a book"
-                  width={500}
-                  height={500}
+                  width={800}
+                  height={800}
                   className="hidden lg:block"
                 />
                 <Image
@@ -130,9 +136,7 @@ export default function Home() {
             <div className="gap-12 px-5 md:px-28 pt-28 pb-12 md:grid-cols-1 grid-cols-1 grid lg:grid-cols-2 grid-flow-row">
               {posts.map((post) => (
                 <div key={post.post_id}>
-                  
                   <CardLog post={post} />
-
                 </div>
               ))}
             </div>
