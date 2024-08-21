@@ -44,7 +44,7 @@ export default function SubTopic({
       const index = subTopicKeys.indexOf(editorId);
 
       if (index === 0) return prev; // Already at the bottom, can't move down
-      
+
       const newSubTopicKeys = [...subTopicKeys];
       const temp = newSubTopicKeys[index - 1];
       newSubTopicKeys[index - 1] = newSubTopicKeys[index];
@@ -57,17 +57,16 @@ export default function SubTopic({
       });
 
       return newSubTopics;
-
-    })
+    });
   };
-  
+
   const moveDown = () => {
     setSubTopics((prev) => {
       const subTopicKeys = Object.keys(prev);
       const index = subTopicKeys.indexOf(editorId);
 
       if (index === subTopicKeys.length - 1) return prev; // Already at the bottom, can't move down
-      
+
       const newSubTopicKeys = [...subTopicKeys];
       const temp = newSubTopicKeys[index + 1];
       newSubTopicKeys[index + 1] = newSubTopicKeys[index];
@@ -80,8 +79,7 @@ export default function SubTopic({
       });
 
       return newSubTopics;
-
-    })
+    });
   };
 
   useEffect(() => {
@@ -160,8 +158,7 @@ export default function SubTopic({
         <Tooltip
           placement="top"
           content="Add Sub Topic"
-          color="lightBlue"
-          size="regular"
+          className="text-black bg-white/80 shadow-md"
           animate={{
             mount: { scale: 1, y: 0 },
             unmount: { scale: 0, y: 25 },
@@ -212,8 +209,7 @@ export default function SubTopic({
         <Tooltip
           placement="top"
           content="Move Up"
-          color="lightBlue"
-          size="regular"
+          className="text-black bg-white/80 shadow-md"
           animate={{
             mount: { scale: 1, y: 0 },
             unmount: { scale: 0, y: 25 },
@@ -229,8 +225,7 @@ export default function SubTopic({
         <Tooltip
           placement="top"
           content="Move Down"
-          color="lightBlue"
-          size="regular"
+          className="text-black bg-white/80 shadow-md"
           animate={{
             mount: { scale: 1, y: 0 },
             unmount: { scale: 0, y: 25 },
@@ -247,8 +242,7 @@ export default function SubTopic({
         <Tooltip
           placement="top"
           content="Remove Sub Topic"
-          color="lightBlue"
-          size="regular"
+          className="text-black bg-white/80 shadow-md"
           animate={{
             mount: { scale: 1, y: 0 },
             unmount: { scale: 0, y: 25 },

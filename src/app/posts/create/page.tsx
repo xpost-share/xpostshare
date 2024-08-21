@@ -2,7 +2,6 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import EditorJS from "@editorjs/editorjs";
 
 import { RiMenuUnfoldLine } from "react-icons/ri";
 import { FaCircleArrowLeft } from "react-icons/fa6";
@@ -15,7 +14,7 @@ import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { count } from "console";
 
 import MainTopic from "@/app/ui/components/create/MainTopic";
-import Nav from "@/app/ui/components/Nav";
+import Nav from "../../ui/components/nav/Nav";
 import SubTopic from "@/app/ui/components/create/SubTopic";
 
 // Default cover photo URL
@@ -38,6 +37,8 @@ export default function PostCreate() {
   const [mainTitle, setMainTitle] = useState<string>("");
   const [mainDesc, setMainDesc] = useState<string>("");
   const [subTopics, setSubTopics] = useState<{ [key: string]: SubTopic }>({});
+  const subTopicRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const mainRef = useRef<HTMLDivElement | null>(null);
 
   const subIds = Object.keys(subTopics);
 
@@ -81,6 +82,8 @@ export default function PostCreate() {
         },
       };
     });
+
+    subTopicRefs.current[newId] = null;
   };
 
   const removeSubTopic = (id: string) => {
@@ -89,6 +92,25 @@ export default function PostCreate() {
       delete newSubTopics[id];
       return newSubTopics;
     });
+
+    delete subTopicRefs.current[id];
+  };
+
+  const handleScrollTo = (id: string) => {
+    if (id === "main-topic") {
+      mainRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      subTopicRefs.current[id]?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  const PostContent = {
+    mainTitle: mainTitle,
+    mainDesc: mainDesc,
+    subTopics: { default: { title: "", desc: "", content: {} }, ...subTopics },
   };
 
   useEffect(() => {
@@ -143,8 +165,8 @@ export default function PostCreate() {
 
   return (
     <div>
-      <Nav />
-      <main className="bg-[#F6F1E9] min-h-screen flex min-w-full relative">
+      <Nav {...PostContent} />
+      <main ref={mainRef} className="bg-[#F6F1E9] min-h-screen flex min-w-full relative">
         <div className="fixed z-50 top-28 left-4">
           <CgMenuLeft
             size={30}
@@ -155,17 +177,21 @@ export default function PostCreate() {
             <div className="p-8 -translate-y-8 bg-white shadow-md max-w-80 w-80 rounded-sm flex items-start flex-col gap-4">
               <FaCircleArrowLeft
                 size={30}
-                className="cursor-pointer"
+                className="cursor-pointer hover:opacity-70 transition-all duration-200 ease-in-out"
                 onClick={toggleMenu}
               />
-              <h1 className="text-base font-extrabold leading-5 mb-1  break-words line-clamp-2 w-full">
-                {mainTitle}
+              <h1
+                onClick={() => handleScrollTo("main-topic")}
+                className={`${mainTitle !== "" ? 'text-black':'text-gray-600'} text-base transition-all duration-200 ease-in-out font-extrabold leading-5 mb-1 break-words cursor-pointer hover:text-amber-600 line-clamp-2 w-full`}
+              >
+                {mainTitle !== "" ? mainTitle : "Main Topic"}
               </h1>
               <div className="flex flex-col items-start gap-1 w-full">
                 {Object.keys(subTopics).map((subId) => (
                   <h2
                     key={subId}
-                    className={`text-sm font-semibold leading-5 break-words line-clamp-2 w-full ${
+                    onClick={() => handleScrollTo(subId)}
+                    className={`text-sm transition-all duration-200 ease-in-out hover:text-amber-600 cursor-pointer font-semibold leading-5 break-words line-clamp-2 w-full ${
                       subTopics[subId]?.title ? "text-black" : "text-gray-600"
                     } `}
                   >
@@ -184,20 +210,21 @@ export default function PostCreate() {
             save
           </button> */}
 
-          <MainTopic
-            addSub={addSubTopic}
-            setTitle={setMainTitle}
-            setDesc={setMainDesc}
-          />
+            <MainTopic
+              addSub={addSubTopic}
+              setTitle={setMainTitle}
+              setDesc={setMainDesc}
+            />
 
           {subIds.map((subId) => (
-            <SubTopic
-              key={subId}
-              editorId={subId}
-              removeSubTopic={removeSubTopic}
-              addSubTopic={addSubTopic}
-              setSubTopics={setSubTopics}
-            />
+            <div key={subId} ref={(el) => (subTopicRefs.current[subId] = el)}>
+              <SubTopic
+                editorId={subId}
+                removeSubTopic={removeSubTopic}
+                addSubTopic={addSubTopic}
+                setSubTopics={setSubTopics}
+              />
+            </div>
           ))}
         </div>
       </main>

@@ -113,8 +113,7 @@ export default function MainTopic({ addSub, setTitle, setDesc }) {
         <Tooltip
           placement="top"
           content="Add Sub Topic"
-          color="lightBlue"
-          size="regular"
+          className="text-black bg-white/80 shadow-md"
           animate={{
             mount: { scale: 1, y: 0 },
             unmount: { scale: 0, y: 25 },

@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import EditorJS from "@editorjs/editorjs";
 import Paragraph from "@editorjs/paragraph";
 import List from "@editorjs/list";
-import ImageTool from "@editorjs/image";
 import AttachesTool from "@editorjs/attaches";
 import Embed from "@editorjs/embed";
 import LinkTool from "@editorjs/link";
+import ImageTool from "@editorjs/image";
+import Marker from "@editorjs/marker";
+import { title } from "process";
 
 export default function Editor({ editorId, setSavedEditor }) {
   const editorRef = useRef(null);
@@ -20,6 +22,7 @@ export default function Editor({ editorId, setSavedEditor }) {
           if (editorRef.current) {
             editorRef.current.save().then((outputData) => {
               setSavedEditor(outputData);
+              console.log("Article data: ", outputData);
             });
           }
         },
@@ -29,28 +32,113 @@ export default function Editor({ editorId, setSavedEditor }) {
             class: Paragraph,
             inlineToolbar: true,
           },
+          marker: {
+            class: Marker,
+            inlineToolbar: true,
+            shortcut: "CMD+SHIFT+M",
+          },
           list: {
             class: List,
             inlineToolbar: true,
+            config: {
+              unordered: true,
+              ordered: true,
+            },
           },
           image: {
             class: ImageTool,
             config: {
-              endpoints: {
-                byFile: "http://localhost:8008/uploadFile", // Your backend file uploader endpoint
-                byUrl: "http://localhost:8008/fetchUrl", // Your endpoint that provides uploading by Url
+              uploader: {
+                uploadByFile(file) {
+                  return new Promise((resolve) => {
+                    const reader = new FileReader();
+
+                    reader.onload = function (event) {
+                      const base64String = event.target.result;
+
+                      // Store the Base64 string or Blob URL temporarily
+                      const imageSource = base64String; // You can choose to store this in local storage, state, or wherever needed
+
+                      // Return the Base64 string or Blob URL as the temporary URL
+                      resolve({
+                        success: 1,
+                        file: {
+                          url: imageSource, // This will be a Base64 string or Blob URL
+                        },
+                      });
+                    };
+
+                    reader.readAsDataURL(file); // Convert the file to a Base64 string
+                  });
+                },
+                uploadByUrl(url) {
+                  return new Promise((resolve) => {
+                    // Store the URL temporarily
+                    const imageUrl = url; // You can store this in local storage, state, or wherever needed
+
+                    // Return the URL as the temporary file location
+                    resolve({
+                      success: 1,
+                      file: {
+                        url: imageUrl, // This will be the original URL
+                      },
+                    });
+                  });
+                },
               },
             },
           },
           attaches: {
             class: AttachesTool,
             config: {
-              endpoint: "http://localhost:8008/uploadFile",
+              uploader: {
+                uploadByFile(file) {
+                  return new Promise((resolve) => {
+                    const reader = new FileReader();
+
+                    reader.onload = function (event) {
+                      const base64String = event.target.result; 
+                      
+                      console.log(file);
+
+                      // Store the Base64 string or Blob URL temporarily
+                      const fileSource = base64String; // You can choose to store this in local storage, state, or wherever needed
+
+                      // Return the Base64 string or Blob URL as the temporary URL
+                      resolve({
+                        success: 1,
+                        file: {
+                          url: fileSource, // This will be a Base64 string or Blob URL
+                          name: file.name,
+                          extension: file.type.split("/")[1],
+                          size: file.size,
+                        },
+                      });
+                    };
+
+                    reader.readAsDataURL(file); // Convert the file to a Base64 string
+                  });
+                },
+              },
             },
           },
           embed: {
             class: Embed,
             inlineToolbar: true,
+            config: {
+              services: {
+                youtube: true,
+                coub: true,
+                facebook: true,
+                instagram: true,
+                twitter: true,
+                codepen: true,
+                codesandbox: true,
+                github: true,
+                twitch: true,
+                vimeo: true,
+              },
+            },
           },
           linkTool: {
             class: LinkTool,
@@ -60,6 +148,7 @@ export default function Editor({ editorId, setSavedEditor }) {
           },
         },
       });
+
       editorRef.current = editor;
     }
   };
@@ -87,11 +176,8 @@ export default function Editor({ editorId, setSavedEditor }) {
   }, [isMounted]);
 
   return (
-    <div className="w-full">
-      <div
-        id={editorId}
-        className="max-w-full font-light text-xs md:text-sm lg:text-xl leading-3"
-      ></div>
+    <div>
+      <div id={editorId}></div>
     </div>
   );
 }
