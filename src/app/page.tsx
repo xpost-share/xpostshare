@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { db, auth } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
-import Nav from "./ui/components/Nav";
+import Nav from "./ui/components/nav/Nav";
 import CardLog from "./ui/components/Home/cardLog";
 
 export default function Home() {
