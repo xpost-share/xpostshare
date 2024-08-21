@@ -90,6 +90,7 @@ export default function SubTopic({
         newSubTopics[editorId] = {
           title: Title,
           content: savedEditor,
+          price: prev?.price,
         };
 
         return newSubTopics;
