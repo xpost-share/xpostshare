@@ -23,6 +23,7 @@ const defaultCoverPhoto = "../../../../public/OIP.jfif";
 interface SubTopic {
   title: string;
   content: object; // You can define a more specific type for content if you have one
+  price: number;
 }
 
 export default function PostCreate() {
@@ -64,6 +65,7 @@ export default function PostCreate() {
               reorderedSubTopics[key] = {
                 title: "",
                 content: {},
+                price: 0,
               };
             } else {
               reorderedSubTopics[key] = prev[key];
@@ -79,6 +81,7 @@ export default function PostCreate() {
         [newId]: {
           title: "",
           content: {},
+          price: 0,
         },
       };
     });
@@ -110,7 +113,8 @@ export default function PostCreate() {
   const PostContent = {
     mainTitle: mainTitle,
     mainDesc: mainDesc,
-    subTopics: { default: { title: "", desc: "", content: {} }, ...subTopics },
+    subTopics: { default: { title: "", content: {}, price: 0 }, ...subTopics },
+    setSubTopics: setSubTopics,
   };
 
   useEffect(() => {
