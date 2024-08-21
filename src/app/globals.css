@@ -103,9 +103,28 @@
 }
 
 .SubTopBg {
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .SubTop {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.rti--container {
+  max-width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 10rem;
+  --rti-bg: #fffff06f !important;
+  --rti-main: #848408 !important;
+  --rti-border: black !important;
+  transition: all 0.3s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --rti-tag: rgba(227, 189, 22, 0.315) !important;
+}
+
+.rti--container input {
+  background-color: var(--rti-bg) !important;
+  color:black;
 }
