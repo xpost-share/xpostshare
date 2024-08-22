@@ -11,12 +11,12 @@ import Image from "next/image";
 import { FaPlus } from "react-icons/fa6";
 
 export default function Nav({
-  mainTitle = "No Title",
+  mainTitle =  "No Title",
   mainDesc = "No Description",
   subTopics = {
-    default: { title: "Default Title", content: "Default Description", price: 0},
+    default: { title: "Default Title", content: {}, price: 0 },
   },
-  setSubTopics = () => {},
+  changePrice = (id, e) => { },
 }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
@@ -76,8 +76,17 @@ export default function Nav({
       }  z-50 fixed w-full top-0 backdrop-blur-sm`}
     >
       <div className="py-[14px] mx-[4%] md:mx-[13%] lg:mx-[7.5%] flex justify-between">
-        <Link href={"/"} className="flex items-center gap-0 cursor-pointer relative">
-          <Image src="/X.png" alt="X logo" width={50} height={50} className="absolute left-0"/>
+        <Link
+          href={"/"}
+          className="flex items-center gap-0 cursor-pointer relative"
+        >
+          <Image
+            src="/X.png"
+            alt="X logo"
+            width={50}
+            height={50}
+            className="absolute left-0"
+          />
           <span className={`text-3xl font-extrabold ml-10`}>Postshare</span>
         </Link>
 
@@ -115,7 +124,7 @@ export default function Nav({
                       mainTitle={mainTitle}
                       mainDesc={mainDesc}
                       subTopics={subTopics}
-                      setSubTopics={setSubTopics}
+                      changePrice={changePrice}
                     />
                   </div>
                 )}
