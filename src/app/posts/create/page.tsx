@@ -1,4 +1,5 @@
 "use client";
+
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
@@ -110,11 +111,18 @@ export default function PostCreate() {
     }
   };
 
+  const changePrice = (id: string, price: number) => {
+    setSubTopics((prev) => {
+      const newSubTopics = { ...prev };
+      newSubTopics[id].price = price;
+      return newSubTopics;
+    });
+  }
   const PostContent = {
     mainTitle: mainTitle,
     mainDesc: mainDesc,
     subTopics: { default: { title: "", content: {}, price: 0 }, ...subTopics },
-    setSubTopics: setSubTopics,
+    changePrice: changePrice,
   };
 
   useEffect(() => {
@@ -122,6 +130,8 @@ export default function PostCreate() {
       user ? setUserData(user) : router.back();
     });
   }, [router]);
+
+
 
   const handleFileReader = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
@@ -169,7 +179,7 @@ export default function PostCreate() {
 
   return (
     <div>
-      <Nav {...PostContent} />
+      <Nav {...PostContent}/>
       <main ref={mainRef} className="bg-[#F6F1E9] min-h-screen flex min-w-full relative">
         <div className="fixed z-50 top-28 left-4">
           <CgMenuLeft
