@@ -27,7 +27,7 @@ export default function UploadDialog({
   mainTitle,
   mainDesc,
   subTopics,
-  setSubTopics,
+  changePrice,
 }) {
   const [activeTab, setActiveTab] = useState("sub");
   const [open, setOpen] = useState(false);
@@ -39,19 +39,56 @@ export default function UploadDialog({
 
   const [isFocused, setIsFocused] = useState(false);
 
+  const len = Object.keys(subTopics).length;
+
+  const isNotAllFilled = () => {
+    const mainTopic = mainTitle.trim() === "" || mainDesc.trim() === "";
+
+    const subTopic = () => {
+      if (len === 1) return true;
+
+      return Object.keys(subTopics).some((key) => {
+        if (key === "default") return false;
+
+        const topic = subTopics[key];
+
+        // Check if title is empty
+        const isTitleEmpty = !topic.title || topic.title.trim() === "";
+
+        // Check if content is empty
+        const isContentEmpty = () => {
+          const cont =
+            !topic.content ||
+            (Object.keys(topic.content).length === 0 &&
+              topic.content.constructor === Object);
+
+          if (!cont) {
+            return topic.content.blocks.length === 0;
+          }
+
+          return cont;
+        };
+
+        return isTitleEmpty || isContentEmpty();
+      });
+    };
+
+    if (len === 1) return mainTopic;
+
+    return mainTopic || subTopic();
+  };
+
   const handleFocus = () => setIsFocused(true);
 
   const handleBlur = () => setIsFocused(false);
 
   const handlePriceChange = (e, id) => {
-    const value = e.target.value;
+    let value = e.target.value;
+
+    if (value === "") value = "0";
 
     if (/^\d*\.?\d*$/.test(value)) {
-      setSubTopics((prev) => {
-        const newSubTopics = { ...prev };
-        newSubTopics[id].price = parseFloat(value);
-        return newSubTopics;
-      });
+      changePrice(id, parseFloat(value));
 
       const totalPrice = Object.keys(subTopics).reduce(
         (sum, key) => sum + (subTopics[key].price || 0),
@@ -104,21 +141,33 @@ export default function UploadDialog({
 
   const handleOpen = () => setOpen(!open);
 
-  const len = Object.keys(subTopics).length;
-
   const handlePostUpload = () => {
-    delete subTopics.default;
+    if (!coverImage) {
+      alert("Please upload a cover image");
+      return;
+    }
+
+    const subWithOutDefault = Object.keys(subTopics).reduce((acc, key) => {
+      if (key !== "default") {
+        acc[key] = subTopics[key];
+      }
+
+      return acc;
+    }, {});
 
     const data = {
       title: mainTitle,
       description: mainDesc,
       cover: coverImage,
       tags: selectedTags,
-      subTopics,
+      subTopics: subWithOutDefault,
+      priceMethod: activeTab,
+      recievePrice: recievePrice,
+      buyerPrice: buyerPrice,
     };
 
     console.log(data);
-  }
+  };
 
   const sections = [
     {
@@ -152,7 +201,13 @@ export default function UploadDialog({
                     key={key}
                     className="w-full py-2 px-5 bg-white border-b-2 border-black/50  flex justify-between gap-3 items-center rounded-md"
                   >
-                    <h1 className={`text-base font-medium  w-[90%] line-clamp-2 break-words ${!title || title.trim() === "" ? "text-gray-600" : 'text-black'}`}>
+                    <h1
+                      className={`text-base font-medium  w-[90%] line-clamp-2 break-words ${
+                        !title || title.trim() === ""
+                          ? "text-gray-600"
+                          : "text-black"
+                      }`}
+                    >
                       {!title || title.trim() === "" ? "Sub Topic " + 1 : title}
                     </h1>
                     <input
@@ -248,7 +303,7 @@ export default function UploadDialog({
         open={open}
         handler={handleOpen}
         size="xxl"
-        className="py-5 px-10 bg-white/70 backdrop-blur-lg"
+        className="py-5 px-10 bg-white/90 backdrop-blur-lg"
       >
         <DialogHeader className="flex items-start pb-0">
           <button
@@ -353,10 +408,10 @@ export default function UploadDialog({
           </div>
         </DialogBody>
       </Dialog>
-      {mainTitle === "" || mainDesc === "" ? (
+      {isNotAllFilled() ? (
         <Tooltip
           placement="bottom"
-          content="Fill the main fields to upload"
+          content="Fill all fields to upload"
           className="text-black bg-white/80 shadow-md"
           size="regular"
           animate={{
