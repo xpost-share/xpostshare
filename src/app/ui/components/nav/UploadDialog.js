@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { TagsInput } from "react-tag-input-component";
 
+import { useRouter } from "next/navigation";
+
 import {
   Button,
   Dialog,
@@ -22,6 +24,9 @@ import {
 
 import { FaAngleLeft } from "react-icons/fa";
 import { IoImages } from "react-icons/io5";
+import { create } from "domain";
+
+import Image from "next/image";
 
 export default function UploadDialog({
   mainTitle,
@@ -36,10 +41,12 @@ export default function UploadDialog({
   const [selectedTags, setSelectedTags] = useState([]);
   const [recievePrice, setRecievePrice] = useState(0);
   const [buyerPrice, setBuyerPrice] = useState(0);
+  const [uplaoded, setUploaded] = useState(false);
 
   const [isFocused, setIsFocused] = useState(false);
 
   const len = Object.keys(subTopics).length;
+  const router = useRouter();
 
   const isNotAllFilled = () => {
     const mainTopic = mainTitle.trim() === "" || mainDesc.trim() === "";
@@ -155,16 +162,58 @@ export default function UploadDialog({
       return acc;
     }, {});
 
-    const data = {
-      title: mainTitle,
-      description: mainDesc,
-      cover: coverImage,
-      tags: selectedTags,
-      subTopics: subWithOutDefault,
-      priceMethod: activeTab,
-      recievePrice: recievePrice,
-      buyerPrice: buyerPrice,
+    const uuid = () => {
+      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+        /[xy]/g,
+        function (c) {
+          var r = (Math.random() * 16) | 0,
+            v = c === "x" ? r : (r & 0x3) | 0x8;
+          return v.toString(16);
+        }
+      );
     };
+
+    const categories = selectedTags.map((tag) => ({
+      id: uuid(),
+      name: tag,
+    }));
+
+    const user = {
+      first_name: "Andi Surya",
+      username: "andis001",
+      image:
+        "https://storage.googleapis.com/digman-dev/tentiran/3cecf7e2-df28-4d57-ae85-0e938648e460.png",
+    };
+
+    const count = {
+      ratings: 0,
+      comments: 5,
+    };
+
+    const data = {
+      id: uuid(),
+      user_id: "1",
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      title: mainTitle,
+      slug: mainTitle.toLowerCase().replace(/ /g, "-"),
+      summary: mainDesc,
+      image_banner: coverImage,
+      read_time: 5,
+      total_price: buyerPrice,
+      is_one_price: activeTab === "one",
+      categories: categories,
+      user: user,
+      count: count,
+      sub_topics: subTopics,
+    };
+
+    setUploaded(true);
+    setTimeout(() => {
+      setUploaded(false);
+      router.push("/");
+    }, 3000);
+
 
     console.log(data);
   };
@@ -303,8 +352,16 @@ export default function UploadDialog({
         open={open}
         handler={handleOpen}
         size="xxl"
-        className="py-5 px-10 bg-white/90 backdrop-blur-lg"
+        className="py-5 px-10 bg-white/90 backdrop-blur-lg relative"
       >
+        {uplaoded && (
+          <div className="absolute z-50 h-screen w-screen flex flex-col items-center justify-center gap-5 left-0 top-0 bg-amber-700">
+            <Image src={"/create/good-job.svg"} width={200} height={200} />
+            <h1 className="text-white text-5xl font-bold w-1/2 text-center">
+              YOUR POST HAS BEEN SUCCESFULLY UPLOADED
+            </h1>
+          </div>
+        )}
         <DialogHeader className="flex items-start pb-0">
           <button
             onClick={handleOpen}

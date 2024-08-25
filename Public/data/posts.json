@@ -1,0 +1,892 @@
+{
+  "status": "success",
+  "message": "posts found",
+  "data": [
+    {
+      "id": "d282f118-1a57-4507-9f4f-2acb47f5c79b",
+      "user_id": 2,
+      "created_at": "12-08-2024 23:06:45",
+      "updated_at": "12-08-2024 23:06:45",
+      "title": "Cara Masuk Magang Tiktok Shop Tokopedia",
+      "slug": "cara-masuk-magang-tiktok-shop-tokopedia",
+      "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "image_banner": "https://storage.googleapis.com/digman-dev/tentiran/007e188b-aa78-4017-933c-b7b2f34c42fc.png",
+      "read_time": 10,
+      "total_price": 321000,
+      "is_one_price": false,
+      "categories": [
+        {
+          "id": "73595b36-639d-48dd-96bc-628c84e3e1dc",
+          "name": "Tutorial"
+        },
+        {
+          "id": "ecd4458d-0664-45a7-a2bf-3281e19ab1ee",
+          "name": "Self Imrovement"
+        }
+      ],
+      "user": {
+        "first_name": "Tantowi Shah Hanif",
+        "username": "tantows001",
+        "image": "https://storage.googleapis.com/digman-dev/tentiran/ec3dc1c1-7739-4362-bf97-47cdb1b3dc68.png"
+      },
+      "count": {
+        "ratings": 4.76,
+        "comments": 2
+      },
+      "sub_topics": [
+        {
+          "id": "9e48d5d4-3efd-48fd-8bfa-61a38449062a",
+          "post_id": "d282f118-1a57-4507-9f4f-2acb47f5c79b",
+          "created_at": "12-08-2024 23:06:45",
+          "updated_at": "12-08-2024 23:06:45",
+          "subtopic_header": "Pendaftaran magang",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "oUq2g_tl8y",
+                "type": "header",
+                "data": {
+                  "text": "Editor.js",
+                  "level": 2
+                }
+              },
+              {
+                "id": "zbGZFPM-iI",
+                "type": "paragraph",
+                "data": {
+                  "text": "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration."
+                }
+              },
+              {
+                "id": "qYIGsjS5rt",
+                "type": "header",
+                "data": {
+                  "text": "Key features",
+                  "level": 3
+                }
+              },
+              {
+                "id": "XV87kJS_H1",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "It is a block-styled editor",
+                    "It returns clean data output in JSON",
+                    "Designed to be extendable and pluggable with a simple API"
+                  ]
+                }
+              },
+              {
+                "id": "AOulAjL8XM",
+                "type": "header",
+                "data": {
+                  "text": "What does it mean «block-styled editor»",
+                  "level": 3
+                }
+              },
+              {
+                "id": "cyZjplMOZ0",
+                "type": "paragraph",
+                "data": {
+                  "text": "Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor's Core."
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": false,
+          "price": 0
+        },
+        {
+          "id": "2ea90e9e-f88f-49a4-ac79-f3a458cbdf06",
+          "post_id": "d282f118-1a57-4507-9f4f-2acb47f5c79b",
+          "created_at": "12-08-2024 23:06:45",
+          "updated_at": "12-08-2024 23:06:45",
+          "subtopic_header": "Interview",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "oUq2g_tl8y",
+                "type": "header",
+                "data": {
+                  "text": "Editor.js",
+                  "level": 2
+                }
+              },
+              {
+                "id": "zbGZFPM-iI",
+                "type": "paragraph",
+                "data": {
+                  "text": "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration."
+                }
+              },
+              {
+                "id": "qYIGsjS5rt",
+                "type": "header",
+                "data": {
+                  "text": "Key features",
+                  "level": 3
+                }
+              },
+              {
+                "id": "XV87kJS_H1",
+                "type": "list",
+                "data": {
+                  "style": "ordered",
+                  "items": [
+                    "It is a block-styled editor",
+                    "It returns clean data output in JSON",
+                    "Designed to be extendable and pluggable with a simple API"
+                  ]
+                }
+              },
+              {
+                "id": "AOulAjL8XM",
+                "type": "header",
+                "data": {
+                  "text": "What does it mean «block-styled editor»",
+                  "level": 3
+                }
+              },
+              {
+                "id": "cyZjplMOZ0",
+                "type": "paragraph",
+                "data": {
+                  "text": "Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor's Core."
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": true,
+          "price": 321000
+        }
+      ]
+    },
+    {
+      "id": "b678f128-8c34-45f8-9f4e-1bcb47f6d82a",
+      "user_id": 3,
+      "created_at": "11-07-2024 14:24:30",
+      "updated_at": "11-07-2024 14:24:30",
+      "title": "Panduan Lengkap Memulai Bisnis Online",
+      "slug": "panduan-lengkap-memulai-bisnis-online",
+      "summary": "Membuka bisnis online bisa menjadi tantangan bagi pemula. Artikel ini memberikan panduan langkah demi langkah untuk membantu Anda memulai bisnis online dari awal hingga sukses.",
+      "image_banner": "https://storage.googleapis.com/digman-dev/tentiran/4f57ad05-c67f-4466-a902-e651d6201c41.png",
+      "read_time": 15,
+      "total_price": 450000,
+      "is_one_price": true,
+      "categories": [
+        {
+          "id": "9abc6532-856e-47e3-8345-2bc84e9a0adc",
+          "name": "Business"
+        },
+        {
+          "id": "f7d445f7-0574-4a6a-8f7b-939c98e4b3ee",
+          "name": "Entrepreneurship"
+        }
+      ],
+      "user": {
+        "first_name": "Andi Surya",
+        "username": "andis001",
+        "image": "https://storage.googleapis.com/digman-dev/tentiran/3cecf7e2-df28-4d57-ae85-0e938648e460.png"
+      },
+      "count": {
+        "ratings": 4.85,
+        "comments": 5
+      },
+      "sub_topics": [
+        {
+          "id": "ab12cd34-3efd-48fd-8bfa-61a38449062a",
+          "post_id": "b678f128-8c34-45f8-9f4e-1bcb47f6d82a",
+          "created_at": "11-07-2024 14:24:30",
+          "updated_at": "11-07-2024 14:24:30",
+          "subtopic_header": "Penelitian Pasar",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "oua1bf87y_h3",
+                "type": "header",
+                "data": {
+                  "text": "Penelitian Pasar",
+                  "level": 2
+                }
+              },
+              {
+                "id": "o38sdhJ_3ss",
+                "type": "paragraph",
+                "data": {
+                  "text": "Penelitian pasar adalah langkah pertama yang krusial dalam memulai bisnis online. Anda perlu memahami pasar, pesaing, dan kebutuhan konsumen sebelum melangkah lebih jauh."
+                }
+              },
+              {
+                "id": "oy8dhsj_87x",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Identifikasi target pasar",
+                    "Analisis pesaing",
+                    "Memahami tren pasar"
+                  ]
+                }
+              },
+              {
+                "id": "asdasdasdasd",
+                "type": "attaches",
+                "data": {
+                  "file": {
+                    "url": "https://storage.googleapis.com/digman-dev/tentiran/4f57ad05-c67f-4466-a902-e651d6201c41.png",
+                    "name": "Panduan Lengkap Memulai Bisnis Online",
+                    "size": 91,
+                    "extension": "pdf"
+                  },
+                  "title": "Download Panduan Lengkap Memulai Bisnis Online"
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": false,
+          "price": 0
+        },
+        {
+          "id": "cd34ef45-8c34-45f8-9f4e-1bcb47f6d82b",
+          "post_id": "b678f128-8c34-45f8-9f4e-1bcb47f6d82a",
+          "created_at": "11-07-2024 14:24:30",
+          "updated_at": "11-07-2024 14:24:30",
+          "subtopic_header": "Strategi Pemasaran",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "shf6gd_dh4",
+                "type": "header",
+                "data": {
+                  "text": "Strategi Pemasaran",
+                  "level": 2
+                }
+              },
+              {
+                "id": "zsaj_uh1j",
+                "type": "paragraph",
+                "data": {
+                  "text": "Pemasaran adalah kunci untuk menarik pelanggan. Dalam subtopik ini, Anda akan mempelajari bagaimana menyusun strategi pemasaran yang efektif untuk bisnis online Anda."
+                }
+              },
+              {
+                "id": "we78sd_97j",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Memanfaatkan media sosial",
+                    "SEO dan SEM",
+                    "Email marketing"
+                  ]
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": true,
+          "price": 150000
+        }
+      ]
+    },
+
+    {
+      "id": "f7896f47-7b12-49e6-8b5e-2acb47f6d73c",
+      "user_id": 4,
+      "created_at": "15-08-2024 09:16:12",
+      "updated_at": "15-08-2024 09:16:12",
+      "title": "10 Tips Sukses Menulis Blog untuk Pemula",
+      "slug": "10-tips-sukses-menulis-blog-untuk-pemula",
+      "summary": "Menulis blog bisa menjadi cara yang menyenangkan untuk berbagi pengetahuan dan pengalaman Anda. Berikut adalah 10 tips yang akan membantu Anda sukses dalam menulis blog, terutama jika Anda baru memulai.",
+      "image_banner": "https://storage.googleapis.com/digman-dev/tentiran/dca2b465-e019-4847-ba55-47149b2fdd50.png",
+      "read_time": 8,
+      "total_price": 0,
+      "is_one_price": false,
+      "categories": [
+        {
+          "id": "a98d5b38-9584-45ad-b4c4-9a9f84e2f3ad",
+          "name": "Writing"
+        },
+        {
+          "id": "b73f1d58-1384-47e7-b9f4-3c8e94a2f1cd",
+          "name": "Blogging"
+        }
+      ],
+      "user": {
+        "first_name": "Rina Amalia",
+        "username": "rina001",
+        "image": "https://storage.googleapis.com/digman-dev/tentiran/d0fcac04-18f6-45a2-b86c-e9b232f0f122.png"
+      },
+      "count": {
+        "ratings": 4.65,
+        "comments": 3
+      },
+      "sub_topics": [
+        {
+          "id": "bc67ef89-8b34-48f8-9f4e-1bcb47f6d82c",
+          "post_id": "f7896f47-7b12-49e6-8b5e-2acb47f6d73c",
+          "created_at": "15-08-2024 09:16:12",
+          "updated_at": "15-08-2024 09:16:12",
+          "subtopic_header": "Pemilihan Topik",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "bdh1bf8y_h4",
+                "type": "header",
+                "data": {
+                  "text": "Pemilihan Topik",
+                  "level": 2
+                }
+              },
+              {
+                "id": "h38shdJ_4ss",
+                "type": "paragraph",
+                "data": {
+                  "text": "Pemilihan topik yang tepat sangat penting untuk menarik pembaca. Pastikan Anda memilih topik yang relevan dan menarik bagi target audiens Anda."
+                }
+              },
+              {
+                "id": "ky8dhsj_98x",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Fokus pada niche tertentu",
+                    "Mengikuti tren",
+                    "Menyesuaikan dengan minat pribadi"
+                  ]
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": false,
+          "price": 0
+        },
+        {
+          "id": "d456ef23-8c34-45f8-9f4e-1bcb47f6d82d",
+          "post_id": "f7896f47-7b12-49e6-8b5e-2acb47f6d73c",
+          "created_at": "15-08-2024 09:16:12",
+          "updated_at": "15-08-2024 09:16:12",
+          "subtopic_header": "Promosi Blog",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "nhg6gd_dh5",
+                "type": "header",
+                "data": {
+                  "text": "Promosi Blog",
+                  "level": 2
+                }
+              },
+              {
+                "id": "u7aj_uh2k",
+                "type": "paragraph",
+                "data": {
+                  "text": "Promosi adalah langkah penting agar blog Anda dikenal oleh lebih banyak orang. Dalam subtopik ini, kita akan membahas cara efektif untuk mempromosikan blog Anda."
+                }
+              },
+              {
+                "id": "ke78sd_98j",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Bagikan di media sosial",
+                    "Jaringan dengan blogger lain",
+                    "Manfaatkan SEO untuk visibilitas"
+                  ]
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": true,
+          "price": 100000
+        }
+      ]
+    },
+    {
+      "id": "d890b238-1c45-46a9-9g8e-3cde78f9b94b",
+      "user_id": 5,
+      "created_at": "12-08-2024 09:30:45",
+      "updated_at": "12-08-2024 09:30:45",
+      "title": "Mastering Digital Marketing for Beginners",
+      "slug": "mastering-digital-marketing-for-beginners",
+      "summary": "Digital marketing can seem overwhelming for beginners. This article provides a comprehensive guide to understanding and mastering the basics of digital marketing to boost your online presence.",
+      "image_banner": "/dummy/DM.jpeg",
+      "read_time": 18,
+      "total_price": 350000,
+      "is_one_price": true,
+      "categories": [
+        {
+          "id": "0def6543-857e-48f3-9356-3ec94f0a1ghj",
+          "name": "Marketing"
+        },
+        {
+          "id": "f8e556f8-0685-5b7b-9f8c-050d09f5c4fg",
+          "name": "Digital"
+        }
+      ],
+      "user": {
+        "first_name": "Sarah Johnson",
+        "username": "sarahj002",
+        "image": "https://storage.googleapis.com/digman-dev/tentiran/d0fcac04-18f6-45a2-b86c-e9b232f0f122.png"
+      },
+      "count": {
+        "ratings": 4.75,
+        "comments": 12
+      },
+      "sub_topics": [
+        {
+          "id": "ef78ij89-5klm-68fg-7ijk-82c39469084b",
+          "post_id": "d890b238-1c45-46a9-9g8e-3cde78f9b94b",
+          "created_at": "12-08-2024 09:30:45",
+          "updated_at": "12-08-2024 09:30:45",
+          "subtopic_header": "Understanding Digital Marketing Fundamentals",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "pq1gh56j_h7",
+                "type": "header",
+                "data": {
+                  "text": "Understanding Digital Marketing Fundamentals",
+                  "level": 2
+                }
+              },
+              {
+                "id": "q62vnmH_5rt",
+                "type": "paragraph",
+                "data": {
+                  "text": "To excel in digital marketing, it's crucial to understand the basic concepts and components that make up this field. This section breaks down the fundamentals to give you a solid foundation."
+                }
+              },
+              {
+                "id": "qw3hmno_94e",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Defining digital marketing",
+                    "Key components: SEO, PPC, Content Marketing",
+                    "Understanding the sales funnel"
+                  ]
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": false,
+          "price": 0
+        },
+        {
+          "id": "fg89lm01-7mno-92hi-3jkl-04e83904518f",
+          "post_id": "d890b238-1c45-46a9-9g8e-3cde78f9b94b",
+          "created_at": "12-08-2024 09:30:45",
+          "updated_at": "12-08-2024 09:30:45",
+          "subtopic_header": "Creating Your First Digital Marketing Strategy",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "rs56jk78m_n9",
+                "type": "header",
+                "data": {
+                  "text": "Creating Your First Digital Marketing Strategy",
+                  "level": 2
+                }
+              },
+              {
+                "id": "s73xolN_9op",
+                "type": "paragraph",
+                "data": {
+                  "text": "Developing a solid digital marketing strategy is essential for achieving your business goals. This section guides you through the steps of creating a tailored strategy that works for you."
+                }
+              },
+              {
+                "id": "sw5ijmn_12d",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Setting clear objectives and KPIs",
+                    "Identifying your target audience",
+                    "Choosing the right digital channels"
+                  ]
+                }
+              },
+              {
+                "id": "mnopqrstu",
+                "type": "attaches",
+                "data": {
+                  "file": {
+                    "url": "https://storage.googleapis.com/digman-dev/tentiran/6g78cd09-e45g-4678-a903-e761f7312b53.docx",
+                    "name": "Digital Marketing Strategy Template",
+                    "size": 105,
+                    "extension": "docx"
+                  },
+                  "title": "Download Digital Marketing Strategy Template"
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": true,
+          "price": 45000
+        },
+        {
+          "id": "gh90op12-8nop-03ij-4klm-15f94015629g",
+          "post_id": "d890b238-1c45-46a9-9g8e-3cde78f9b94b",
+          "created_at": "12-08-2024 09:30:45",
+          "updated_at": "12-08-2024 09:30:45",
+          "subtopic_header": "Leveraging Social Media for Business Growth",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "tu78kl89o_o1",
+                "type": "header",
+                "data": {
+                  "text": "Leveraging Social Media for Business Growth",
+                  "level": 2
+                }
+              },
+              {
+                "id": "u84ympO_1qr",
+                "type": "paragraph",
+                "data": {
+                  "text": "Social media platforms offer a powerful way to connect with your audience and promote your brand. This section explores how to effectively use social media for business growth."
+                }
+              },
+              {
+                "id": "uw6lmno_23f",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Choosing the right platforms for your business",
+                    "Creating engaging content that resonates",
+                    "Utilizing paid advertising to boost visibility"
+                  ]
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": false,
+          "price": 0
+        },
+        {
+          "id": "hi01qr23-9pqr-04kl-5lmn-26g05126730h",
+          "post_id": "d890b238-1c45-46a9-9g8e-3cde78f9b94b",
+          "created_at": "12-08-2024 09:30:45",
+          "updated_at": "12-08-2024 09:30:45",
+          "subtopic_header": "Analyzing Your Digital Marketing Performance",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "vw90mn12p_p2",
+                "type": "header",
+                "data": {
+                  "text": "Analyzing Your Digital Marketing Performance",
+                  "level": 2
+                }
+              },
+              {
+                "id": "v95ynqP_2st",
+                "type": "paragraph",
+                "data": {
+                  "text": "To refine and improve your digital marketing efforts, analyzing your performance is key. This section covers the tools and metrics you need to monitor your progress."
+                }
+              },
+              {
+                "id": "vw7opqr_34g",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Understanding key metrics: CTR, Conversion Rate, ROI",
+                    "Using tools like Google Analytics and SEMrush",
+                    "Adjusting your strategy based on data insights"
+                  ]
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": true,
+          "price": 30000
+        }
+      ]
+    },
+    {
+      "id": "c789a128-9d34-45a9-8f7e-2bcd67e8a83a",
+      "user_id": 4,
+      "created_at": "11-08-2024 10:15:20",
+      "updated_at": "11-08-2024 10:15:20",
+      "title": "Becoming a Haircutter with Zero Experience",
+      "slug": "becoming-a-haircutter-with-zero-experience",
+      "summary": "Starting a career as a haircutter can be daunting without prior experience. This article provides a step-by-step guide to help you start a successful hair cutting business from scratch.",
+      "image_banner": "/dummy/R.jpeg",
+      "read_time": 20,
+      "total_price": 550000,
+      "is_one_price": true,
+      "categories": [
+        {
+          "id": "8bcd6532-856e-47e3-8345-2dc84e9a0fgh",
+          "name": "Business"
+        },
+        {
+          "id": "e7d445f7-0574-4a6a-8f7b-939c98e4b3ff",
+          "name": "Entrepreneurship"
+        }
+      ],
+      "user": {
+        "first_name": "Budi Santoso",
+        "username": "budis001",
+        "image": "https://storage.googleapis.com/digman-dev/tentiran/3cecf7e2-df28-4d57-ae85-0e938648e460.png"
+      },
+      "count": {
+        "ratings": 4.9,
+        "comments": 8
+      },
+      "sub_topics": [
+        {
+          "id": "bc23ef56-3fgh-48cd-8bfg-62a39459073b",
+          "post_id": "c789a128-9d34-45a9-8f7e-2bcd67e8a83a",
+          "created_at": "11-08-2024 10:15:20",
+          "updated_at": "11-08-2024 10:15:20",
+          "subtopic_header": "Understanding the Basics of Hair Cutting",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "opq1ef23t_h4",
+                "type": "header",
+                "data": {
+                  "text": "Understanding the Basics of Hair Cutting",
+                  "level": 2
+                }
+              },
+              {
+                "id": "p49sdfG_4ht",
+                "type": "paragraph",
+                "data": {
+                  "text": "Before you begin cutting hair, it's important to understand the fundamental techniques and tools involved. This section will cover the essential knowledge required to start practicing hair cutting."
+                }
+              },
+              {
+                "id": "pw9dhtg_98y",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Familiarizing with basic hair cutting tools",
+                    "Learning different cutting techniques",
+                    "Practicing on mannequins or willing friends"
+                  ]
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": false,
+          "price": 0
+        },
+        {
+          "id": "cd34gh67-4hij-58ef-9ghk-72b49560184c",
+          "post_id": "c789a128-9d34-45a9-8f7e-2bcd67e8a83a",
+          "created_at": "11-08-2024 10:15:20",
+          "updated_at": "11-08-2024 10:15:20",
+          "subtopic_header": "Building a Client Base",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "rsd2gh34i_j5",
+                "type": "header",
+                "data": {
+                  "text": "Building a Client Base",
+                  "level": 2
+                }
+              },
+              {
+                "id": "r59tjfJ_5iu",
+                "type": "paragraph",
+                "data": {
+                  "text": "Once you've honed your skills, the next step is to start building a client base. This section provides tips on how to attract your first customers and keep them coming back."
+                }
+              },
+              {
+                "id": "rw1efjk_79z",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Offering free or discounted haircuts to build a portfolio",
+                    "Using social media to showcase your work",
+                    "Providing excellent customer service to retain clients"
+                  ]
+                }
+              },
+              {
+                "id": "ghijklmnop",
+                "type": "attaches",
+                "data": {
+                  "file": {
+                    "url": "https://storage.googleapis.com/digman-dev/tentiran/5f67bc08-d34f-4567-bf8e-2d7b67e9a2f8.docx",
+                    "name": "Haircutter Bussiness Model Analysis Template",
+                    "size": 120,
+                    "extension": "docx"
+                  },
+                  "title": "Haircutter Business Model Analysis Template"
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": false,
+          "price": 0
+        },
+        {
+          "id": "de45hi78-5jkl-69fg-0hij-82c50671295d",
+          "post_id": "c789a128-9d34-45a9-8f7e-2bcd67e8a83a",
+          "created_at": "11-08-2024 10:15:20",
+          "updated_at": "11-08-2024 10:15:20",
+          "subtopic_header": "Choosing the Right Tools and Equipment",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "tuv3hi45k_l6",
+                "type": "header",
+                "data": {
+                  "text": "Choosing the Right Tools and Equipment",
+                  "level": 2
+                }
+              },
+              {
+                "id": "t60ujgK_6kl",
+                "type": "paragraph",
+                "data": {
+                  "text": "Selecting the right tools and equipment is crucial for delivering quality haircuts. This section will guide you through the essentials, from scissors to combs, and help you decide what to invest in first."
+                }
+              },
+              {
+                "id": "tw2ghmn_80a",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Understanding different types of scissors and their uses",
+                    "Choosing the right combs and brushes",
+                    "Investing in a quality hair dryer and clippers"
+                  ]
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": true,
+          "price": 55000
+        },
+        {
+          "id": "ef56ij89-6klm-70gh-1ijk-93d61782306e",
+          "post_id": "c789a128-9d34-45a9-8f7e-2bcd67e8a83a",
+          "created_at": "11-08-2024 10:15:20",
+          "updated_at": "11-08-2024 10:15:20",
+          "subtopic_header": "Marketing Your Haircutting Services",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "wx34ij56m_m7",
+                "type": "header",
+                "data": {
+                  "text": "Marketing Your Haircutting Services",
+                  "level": 2
+                }
+              },
+              {
+                "id": "x71vkfL_7mn",
+                "type": "paragraph",
+                "data": {
+                  "text": "Effective marketing is key to growing your hair cutting business. This section covers various strategies to promote your services and reach a wider audience."
+                }
+              },
+              {
+                "id": "xw3hijk_91b",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Creating a professional website and portfolio",
+                    "Utilizing social media marketing",
+                    "Engaging in local community events and partnerships"
+                  ]
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": true,
+          "price": 35000
+        },
+        {
+          "id": "fg67kl90-7mno-81hi-2jkl-04e72893417f",
+          "post_id": "c789a128-9d34-45a9-8f7e-2bcd67e8a83a",
+          "created_at": "11-08-2024 10:15:20",
+          "updated_at": "11-08-2024 10:15:20",
+          "subtopic_header": "Setting Up Your Home Salon",
+          "content": {
+            "time": 1550476186479,
+            "blocks": [
+              {
+                "id": "yz45kl67n_n8",
+                "type": "header",
+                "data": {
+                  "text": "Setting Up Your Home Salon",
+                  "level": 2
+                }
+              },
+              {
+                "id": "y82wlmN_8op",
+                "type": "paragraph",
+                "data": {
+                  "text": "If you're starting with a limited budget, setting up a home salon can be a practical choice. This section provides tips on how to transform a part of your home into a professional workspace."
+                }
+              },
+              {
+                "id": "yw4ijkl_02c",
+                "type": "list",
+                "data": {
+                  "style": "unordered",
+                  "items": [
+                    "Designing a comfortable and professional environment",
+                    "Ensuring proper lighting and ventilation",
+                    "Meeting local regulations and safety standards"
+                  ]
+                }
+              }
+            ],
+            "version": "2.8.1"
+          },
+          "is_premium": false,
+          "price": 0
+        }
+      ]
+    }
+  ]
+}

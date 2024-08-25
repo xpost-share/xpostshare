@@ -5,6 +5,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { extractSlugFromURL } from "@/app/utils";
 import { Avatar, Button } from "@material-tailwind/react";
 import { FaCommentDots, FaStar, FaRegBookmark } from "react-icons/fa";
+import { GrFormView } from "react-icons/gr";
+import { MdDownload } from "react-icons/md";
 
 import DialogBuy from "@/app/ui/components/view/DialogBuy";
 
@@ -96,8 +98,41 @@ export default function PostPage() {
     );
   };
 
+  const customAttaches = ({ data, style, classNames, config }: any) => {
+    return (
+      <div className="mt-4 p-3 rounded-md outline outline-2 outline-[#D4CCB0] flex items-center justify-between w-full ">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3">
+            <Image
+              src={"/view/pdf.svg"}
+              alt={data.title}
+              width={40}
+              height={40}
+            />
+            <div className="w-0.5 h-14 rounded-md bg-[#D4CCB0]" />
+          </div>
+          <div className="flex flex-col gap-3">
+            <p className="text-black text-xl">{data.title}</p>
+            <p className="text-gray-600 text-xl">{data.file.size}Kb</p>
+          </div>
+        </div>
+        <div className="flex gap-2 justify-center items-center">
+          <button className="py-1 px-2 rounded-lg bg-orange-400 flex gap-2 justify-center items-center">
+            <GrFormView size={30} className="text-white" />
+            <p className="text-white text-xl">VIEW</p>
+          </button>
+          <button className="py-1 px-3 bg-red-600 rounded-lg flex gap-2 justify-center items-center">
+            <MdDownload size={30} className="text-white" />
+            <p className="text-white text-xl">DOWNLOAD</p>
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   const renderers = {
     list: CustomListRenderer,
+    attaches: customAttaches,
   };
 
   const style = {

@@ -6,6 +6,8 @@ import { IoChevronBackCircleOutline } from "react-icons/io5";
 
 import Image from "next/image";
 
+import { useRouter } from "next/navigation";
+
 import {
   Button,
   Dialog,
@@ -22,7 +24,20 @@ export default function DialogBuy({ open, handleOpen, post }) {
       isCheck: true,
     }))
   );
+
+  const router = useRouter();
+
   const [selectedTopics, setSelectedTopics] = useState(post.sub_topics);
+
+  const [purchased, setPurchased] = useState(false);
+
+  const handlePurchased = () => {
+    handleOpen();
+    setPurchased(true);
+    setTimeout(() => {
+      setPurchased(false);
+    }, 3000);
+  };
 
   const handleCheck = (id) => {
     const newTopicsChecker = topicsChecker.map((topic) => {
@@ -47,7 +62,6 @@ export default function DialogBuy({ open, handleOpen, post }) {
   }, [selectedTopics]);
 
   const handleSelectX = (condition) => {
-  
     const newTopicsChecker = topicsChecker.map((topic) => {
       return {
         ...topic,
@@ -57,10 +71,17 @@ export default function DialogBuy({ open, handleOpen, post }) {
 
     setSelectedTopics(newTopicsChecker.map((topic) => topic.subTopic));
     setTopicsChecker(newTopicsChecker);
-  }
+  };
 
   return (
     <>
+      {purchased && (
+        <div className="absolute z-50 h-screen w-screen flex flex-col items-center justify-center gap-5 left-0 top-0 bg-amber-700">
+          <h1 className="text-white text-5xl font-bold w-1/2 text-center">
+            PURCHASED SUCCESFULLY
+          </h1>
+        </div>
+      )}
       <Dialog
         open={open}
         handler={handleOpen}
@@ -69,7 +90,7 @@ export default function DialogBuy({ open, handleOpen, post }) {
           unmount: { scale: 0.9, y: -100 },
         }}
         size="xl"
-        className="rounded-sm bg-[#F8C895]"
+        className="rounded-sm bg-[#F8C895] relative"
       >
         <DialogHeader className="flex justify-between items-center pt-5 mx-[1.5%]">
           <button
@@ -96,7 +117,7 @@ export default function DialogBuy({ open, handleOpen, post }) {
                     {topic.subTopic.subtopic_header}
                   </h1>
                   <h1 className="py-1 border-2 w-20 text-center overflow-hidden text-xs border-brown-400 px-3 bg-[#ffa00821] text-black rounded-full">
-                    Rp{topic.subTopic.price.toLocaleString('de-DE')}
+                    Rp{topic.subTopic.price.toLocaleString("de-DE")}
                   </h1>
                   <div
                     onClick={() => handleCheck(topic.id)}
@@ -113,8 +134,18 @@ export default function DialogBuy({ open, handleOpen, post }) {
               ))}
             </div>
             <div className="flex justify-end gap-4 mx-1">
-              <button onClick={() => handleSelectX(true)} className="hover:text-black transition duration-300 ease-in cursor-pointer">select all</button>
-              <button onClick={() => handleSelectX(false)} className="hover:text-black transition duration-300 ease-in cursor-pointer">clear all</button>
+              <button
+                onClick={() => handleSelectX(true)}
+                className="hover:text-black transition duration-300 ease-in cursor-pointer"
+              >
+                select all
+              </button>
+              <button
+                onClick={() => handleSelectX(false)}
+                className="hover:text-black transition duration-300 ease-in cursor-pointer"
+              >
+                clear all
+              </button>
             </div>
           </div>
           <div className="h-[500px] max-h-[500px] p-5 bg-white rounded-sm w-full mx-[2%] flex flex-col gap-3">
@@ -128,12 +159,17 @@ export default function DialogBuy({ open, handleOpen, post }) {
             <div className="flex flex-col gap-2">
               <h1 className="text-2xl font-semibold text-black">Sub Total</h1>
               <div className="flex flex-col overflow-y-auto p-1 h-[200px] gap-1">
-                {selectedTopics.map((topic,idx) => (
-                  <div key={topic.id} className="flex justify-between w-full max-w-full">
+                {selectedTopics.map((topic, idx) => (
+                  <div
+                    key={topic.id}
+                    className="flex justify-between w-full max-w-full"
+                  >
                     <h2 className="leading-4 text-black line-clamp-2 break-words w-[70%]">
                       {topic.subtopic_header}
                     </h2>
-                    <h2 className="text-black">Rp{topic.price.toLocaleString('de-DE')}</h2>
+                    <h2 className="text-black">
+                      Rp{topic.price.toLocaleString("de-DE")}
+                    </h2>
                   </div>
                 ))}
               </div>
@@ -141,9 +177,13 @@ export default function DialogBuy({ open, handleOpen, post }) {
             </div>
             <div className="w-full flex justify-between items-center">
               <h1 className="text-2xl font-semibold text-black">Total</h1>
-              <h2 className="text-black">Rp{TotalPrice.toLocaleString('de-DE')}</h2>
+              <h2 className="text-black">
+                Rp{TotalPrice.toLocaleString("de-DE")}
+              </h2>
             </div>
-            <Button className="bg-[#871400]">BUY</Button>
+            <Button onClick={handlePurchased} className="bg-[#871400]">
+              BUY
+            </Button>
           </div>
         </DialogBody>
       </Dialog>
