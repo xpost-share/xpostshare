@@ -59,7 +59,6 @@ export default function Nav({
       setIsLoggedIn(false);
       setUserName("");
       router.push("/");
-      window.location.reload();
     } catch (error) {
       console.error("Logout error:", error);
     }
