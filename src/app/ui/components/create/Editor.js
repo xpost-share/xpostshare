@@ -7,7 +7,6 @@ import Embed from "@editorjs/embed";
 import LinkTool from "@editorjs/link";
 import ImageTool from "@editorjs/image";
 import Marker from "@editorjs/marker";
-import { title } from "process";
 
 export default function Editor({ editorId, setSavedEditor }) {
   const editorRef = useRef(null);

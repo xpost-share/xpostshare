@@ -152,7 +152,7 @@ export default function SubTopic({
       <Editor editorId={editorId} setSavedEditor={setSavedEditor} />
 
       <div
-        className={`absolute flex gap-10 bottom-0 z-10 left-1/2 transform -translate-x-1/2 translate-y-1/2 ${
+        className={`absolute flex bottom-0 z-10 left-1/2 transform -translate-x-1/2 translate-y-1/2 ${
           isFocused ? "block" : "hidden"
         }`}
       >
