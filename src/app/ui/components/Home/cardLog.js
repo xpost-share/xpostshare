@@ -1,72 +1,96 @@
 import { Avatar } from "@material-tailwind/react";
 import Link from "next/link";
-
-import { CiStar } from "react-icons/ci";
-import { FaRegCommentDots } from "react-icons/fa";
+import { FaCommentDots, FaStar, FaDollarSign } from "react-icons/fa";
 
 export default function CardLog({ post }) {
+  const isPostPriced = () => {
+    console.log("price: ", post.total_price);
+    console.log("is ", post.total_price > 0);
+    return post.total_price > 0;
+  };
+
+  const formatPrice = (price) => {
+    if (!price) return "0.00";
+    return price.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
+
   return (
     <Link href={`/posts/${post.slug}`}>
-      <div className="bg-white rounded-md shadow-lg postcard transition-all duration-600 cursor-pointer flex flex-col p-4">
-        <div className="grid grid-cols-2 gap-5">
-          <div className="w-full h-44">
-            <img
-              src={post.image_url}
-              alt="Post image"
-              className="rounded-md object-cover object-center h-full w-full"
-            />
-          </div>
-          <div className="flex flex-col justify-center">
-            <h1 className="text-2xl font-bold leading-7 mb-3 line-clamp-2">
-              {post.title}
-            </h1>
-            <p className="text-xs font-extralight line-clamp-8 text-justify">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
-              voluptatibus aut doloribus repudiandae iusto laboriosam,
-              molestias, in numquam autem consectetur assumenda maxime quae
-              consequuntur odit a totam beatae, eius commodi. Lorem ipsum dolor
-              sit amet consectetur adipisicing elit. Magnam voluptatibus aut
-              doloribus repudiandae iusto laboriosam, molestias, in numquam
-              autem consectetur assumenda maxime quae consequuntur odit a totam
-              beatae, eius commodi. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Magnam voluptatibus aut doloribus repudiandae
-              iusto laboriosam, molestias, in numquam autem consectetur
-              assumenda maxime quae consequuntur odit a totam beatae, eius
-              commodi.
-            </p>
-          </div>
-        </div>
-        <div className="flex justify-between mt-4 items-center gap-9">
-          <div className="flex gap-2 items-center">
-            <Avatar src={"/tst.jpg"} size="sm" />
-            <div className="flex flex-col">
-              <span className="text-xs font-bold line-clamp-1 w-32">
-                {post.author_name}
+      <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer p-5 flex flex-col gap-4">
+        <div className="relative w-full h-52 overflow-hidden rounded-md">
+          {isPostPriced() && (
+            <div className="absolute top-2 right-2 z-10 bg-white/90 shadow-md text-black px-2 py-1 rounded-md flex items-center gap-1">
+              <span className="text-sm font-medium">
+                Rp {formatPrice(post.total_price)}
               </span>
-              <span className="text-xs font-extralight">{post.pub_date}</span>
+            </div>
+          )}
+          <img
+            src={post.image_banner}
+            alt={post.title}
+            className="object-cover object-center h-full w-full transition-transform duration-500 transform hover:scale-105"
+          />
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <h1 className="text-xl font-semibold leading-snug line-clamp-2">
+            {post.title}
+          </h1>
+          <p className="text-sm text-gray-600 line-clamp-4 text-justify max-h-20 h-20">
+            {post.summary}
+          </p>
+        </div>
+
+        <div className="flex justify-between items-center gap-4">
+          <div className="flex items-center gap-3">
+            <Avatar
+              src={post.user.image}
+              size="sm"
+              className="object-cover object-center p-0.5"
+              withBorder={true}
+            />
+            <div className="flex flex-col">
+              <span className="text-sm font-medium line-clamp-1">
+                {post.user.first_name} {post.user.last_name}
+              </span>
+              <span className="text-xs text-gray-500">
+                {post.created_at.split(" ")[0]}
+              </span>
             </div>
           </div>
+
+          <div className="text-sm font-medium text-blue-500">
+            {post.read_time} min read
+          </div>
+
           <div className="flex items-center gap-5">
-            <div className="flex items-center gap-2">
-              <span className="text-xl">{post.comments.length}</span>
-              <FaRegCommentDots className="text-blue-400" size={25} />
+            <div className="flex items-center gap-1">
+              <FaCommentDots className="text-blue-400" size={30} />
+              <span className="text-base font-medium">
+                {post.count.comments}
+              </span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="text-xl">4.5</span>
-              <CiStar className="text-yellow-600" size={30} />
+              <FaStar className="text-yellow-500" size={30} />
+              <span className="text-base font-medium">
+                {post.count.ratings}
+              </span>
             </div>
           </div>
-          <div className="flex items-center gap-2 overflow-hidden">
-            <span className="text-amber-400 border-2 rounded-full border-amber-400 px-2">
-              Gore
+        </div>
+
+        <div className="flex flex-wrap gap-2 mt-3">
+          {post.categories.map((category) => (
+            <span
+              key={category.id}
+              className="text-xs text-amber-700 border border-amber-700 rounded-full px-3 py-1"
+            >
+              {category.name}
             </span>
-            <span className="text-amber-400 border-2 rounded-full border-amber-400 px-2">
-              Gore
-            </span>
-            <span className="text-amber-400 border-2 rounded-full border-amber-400 px-2">
-              Gore
-            </span>
-          </div>
+          ))}
         </div>
       </div>
     </Link>
