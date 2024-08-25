@@ -13,29 +13,27 @@ export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [displayName, setDisplayName] = useState<string>("");
-  const [titles, setTitles] = useState<string[]>([
-    "XpostShare",
-    "Xposure",
-    "Xperience",
-  ]);
-  const [currentTitleIndex, setCurrentTitleIndex] = useState<number>(0);
 
-  const shortenText = (text: string): string => {
-    return text.length <= 55 ? text : text.slice(0, 55) + "...";
-  };
+  // const fetchAllPosts = async () => {
+  //   const querySnapshot = await getDocs(collection(db, "posts"));
+  //   const posts: any = [];
+  //   querySnapshot.forEach((doc) => {
+  //     posts.push({ ...doc.data(), post_id: doc.id });
+  //   });
+  //   setPosts(posts);
+  // };
+
   const fetchAllPosts = async () => {
-    const querySnapshot = await getDocs(collection(db, "posts"));
-    const posts: any = [];
-    querySnapshot.forEach((doc) => {
-      posts.push({ ...doc.data(), post_id: doc.id });
-    });
-    setPosts(posts);
+    try {
+      const res = await fetch("/data/posts.json");
+      const data = await res.json();
+      setPosts(data.data); 
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
   };
 
   useEffect(() => {
-
-    console.log(localStorage);
-
     const checkAuth = () => {
       const userJson = localStorage.getItem("user");
       const token = localStorage.getItem("token");
@@ -57,10 +55,6 @@ export default function Home() {
 
     checkAuth();
 
-    const interval = setInterval(() => {
-      setCurrentTitleIndex((prevIndex) => (prevIndex + 1) % titles.length);
-    }, 3000);
-
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsLogin(true);
@@ -72,10 +66,10 @@ export default function Home() {
     });
 
     return () => {
-      clearInterval(interval);
       unsubscribe();
     };
   }, []);
+
 
   return (
     <main>
@@ -135,7 +129,7 @@ export default function Home() {
           <div className="bg-[#F6F1E9] min-h-screen">
             <div className="gap-12 px-5 md:px-28 pt-28 pb-12 md:grid-cols-1 grid-cols-1 grid lg:grid-cols-2 grid-flow-row">
               {posts.map((post) => (
-                <div key={post.post_id}>
+                <div key={post.id}>
                   <CardLog post={post} />
                 </div>
               ))}
